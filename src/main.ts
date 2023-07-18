@@ -1,11 +1,11 @@
-import { Client } from "discord.js";
-import "dotenv/config";
-import ready from "./listeners/ready";
+import { Client } from 'discord.js';
+import 'dotenv/config';
+import ready from './listeners/ready';
 
 const client = new Client({
-    intents: []
+	intents: [],
 });
 
-client.login(process.env.DISCORD_KEY).then(() => {});
+client.login(process.env.DISCORD_KEY);
 
 ready(client);

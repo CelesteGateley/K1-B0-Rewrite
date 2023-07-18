@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import "dotenv/config";
+import ready from "./listeners/ready";
 
 const client = new Client({
     intents: []
@@ -7,4 +8,4 @@ const client = new Client({
 
 client.login(process.env.DISCORD_KEY).then(() => {});
 
-console.log(client);
+ready(client);

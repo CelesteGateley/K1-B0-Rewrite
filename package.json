@@ -1,6 +1,11 @@
 {
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
   "dependencies": {
-    "discord.js": "^14.11.0"
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "@types/node": "^20.4.2",

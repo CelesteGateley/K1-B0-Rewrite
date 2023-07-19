@@ -17,6 +17,10 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     }
 
     await interaction.deferReply();
-
-    slashCommand.run(client, interaction);
+    try {
+        await slashCommand.run(client, interaction);
+    } catch (e) {
+        console.error(e);
+        await interaction.followUp('Sorry, something went wrong whilst running this command!');
+    }
 };

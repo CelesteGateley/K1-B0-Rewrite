@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { Ping } from './commands/ping';
 import { Winnable } from './commands/images/winnable';
+import { RulesOfTheInternet } from './commands/fun/roti';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -45,9 +46,12 @@ export class OptionsContainer {
     }
 }
 
-export function getAttachment(filename: string): AttachmentBuilder {
-    const root: string = process.cwd();
-    return new AttachmentBuilder(root + '/assets/' + filename, { name: filename });
+export function getAssetPath(filename: string): string {
+    return process.cwd() + '/assets/' + filename;
 }
 
-export const Commands: Command[] = [Ping, Winnable];
+export function getAttachment(filename: string): AttachmentBuilder {
+    return new AttachmentBuilder(getAssetPath(filename), { name: filename });
+}
+
+export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet];

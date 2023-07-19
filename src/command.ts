@@ -9,6 +9,7 @@ import { Ping } from './commands/ping';
 import { Winnable } from './commands/images/winnable';
 import { RulesOfTheInternet } from './commands/fun/roti';
 import { RollDice } from './commands/tabletop/roll';
+import { Roulette } from './commands/fun/roulette';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -55,4 +56,4 @@ export function getAttachment(filename: string): AttachmentBuilder {
     return new AttachmentBuilder(getAssetPath(filename), { name: filename });
 }
 
-export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice];
+export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette];

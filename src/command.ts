@@ -1,5 +1,12 @@
-import { CommandInteraction, ChatInputApplicationCommandData, Client, Channel } from 'discord.js';
+import {
+    CommandInteraction,
+    ChatInputApplicationCommandData,
+    Client,
+    Channel,
+    AttachmentBuilder,
+} from 'discord.js';
 import { Ping } from './commands/ping';
+import { Winnable } from './commands/images/winnable';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -16,26 +23,31 @@ export class OptionsContainer {
     getBoolean(option: string): boolean|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return interaction.options.getBoolean(option);
+        return this.interaction.options.getBoolean(option);
     }
 
     getString(option: string): boolean|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return interaction.options.getString(option);
+        return this.interaction.options.getString(option);
     }
 
     getNumber(option: string): number|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return interaction.options.getNumber(option);
+        return this.interaction.options.getNumber(option);
     }
 
     getChannel(option: string): Channel|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        return interaction.options.getChannel(option);
+        return this.interaction.options.getChannel(option);
     }
 }
 
-export const Commands: Command[] = [Ping];
+export function getAttachment(filename: string): AttachmentBuilder {
+    const root: string = process.cwd();
+    return new AttachmentBuilder(root + '/assets/' + filename, { name: filename });
+}
+
+export const Commands: Command[] = [Ping, Winnable];

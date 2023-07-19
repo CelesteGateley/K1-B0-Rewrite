@@ -6,6 +6,7 @@
   "dependencies": {
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1",
+    "riot-valorant-api": "^0.2.4",
     "winston": "^3.10.0"
   },
   "devDependencies": {

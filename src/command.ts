@@ -11,6 +11,7 @@ import { RulesOfTheInternet } from './commands/fun/roti';
 import { RollDice } from './commands/tabletop/roll';
 import { Roulette } from './commands/fun/roulette';
 import { Shoot } from './commands/fun/shoot';
+import { ValorantApiStatus } from './commands/valorant/status';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -63,4 +64,4 @@ export function getAttachment(filename: string): AttachmentBuilder {
     return new AttachmentBuilder(getAssetPath(filename), { name: filename });
 }
 
-export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette, Shoot];
+export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette, Shoot, ValorantApiStatus];

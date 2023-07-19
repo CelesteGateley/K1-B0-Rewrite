@@ -1,5 +1,6 @@
 import { Client, SlashCommandBooleanOption, CommandInteraction } from 'discord.js';
 import { Command, OptionsContainer } from '../command';
+import { logger } from '../logger';
 
 export const Ping: Command = {
     name: 'ping',
@@ -11,7 +12,7 @@ export const Ping: Command = {
         const options = new OptionsContainer(interaction);
         const content = 'Pong!';
 
-        console.log(options.getBoolean('type'));
+        logger.info('' + options.getBoolean('type'));
 
         await interaction.followUp({
             ephemeral: true,

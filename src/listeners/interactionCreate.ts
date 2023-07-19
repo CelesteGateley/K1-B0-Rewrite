@@ -1,5 +1,6 @@
 import { CommandInteraction, Client, Interaction } from 'discord.js';
 import { Commands } from '../command';
+import { logger } from '../logger';
 
 export default (client: Client): void => {
     client.on('interactionCreate', async (interaction: Interaction) => {
@@ -20,7 +21,7 @@ const handleSlashCommand = async (client: Client, interaction: CommandInteractio
     try {
         await slashCommand.run(client, interaction);
     } catch (e) {
-        console.error(e);
+        logger.error(e as Error);
         await interaction.followUp('Sorry, something went wrong whilst running this command!');
     }
 };

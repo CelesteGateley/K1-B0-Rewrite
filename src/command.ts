@@ -8,6 +8,7 @@ import {
 import { Ping } from './commands/ping';
 import { Winnable } from './commands/images/winnable';
 import { RulesOfTheInternet } from './commands/fun/roti';
+import { RollDice } from './commands/tabletop/roll';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -27,7 +28,7 @@ export class OptionsContainer {
         return this.interaction.options.getBoolean(option);
     }
 
-    getString(option: string): boolean|null {
+    getString(option: string): string|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         return this.interaction.options.getString(option);
@@ -54,4 +55,4 @@ export function getAttachment(filename: string): AttachmentBuilder {
     return new AttachmentBuilder(getAssetPath(filename), { name: filename });
 }
 
-export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet];
+export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice];

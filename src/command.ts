@@ -3,13 +3,14 @@ import {
     ChatInputApplicationCommandData,
     Client,
     Channel,
-    AttachmentBuilder,
+    AttachmentBuilder, User,
 } from 'discord.js';
 import { Ping } from './commands/ping';
 import { Winnable } from './commands/images/winnable';
 import { RulesOfTheInternet } from './commands/fun/roti';
 import { RollDice } from './commands/tabletop/roll';
 import { Roulette } from './commands/fun/roulette';
+import { Shoot } from './commands/fun/shoot';
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -41,6 +42,12 @@ export class OptionsContainer {
         return this.interaction.options.getNumber(option);
     }
 
+    getUser(option: string): User|null {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        return this.interaction.options.getUser(option);
+    }
+
     getChannel(option: string): Channel|null {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -56,4 +63,4 @@ export function getAttachment(filename: string): AttachmentBuilder {
     return new AttachmentBuilder(getAssetPath(filename), { name: filename });
 }
 
-export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette];
+export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette, Shoot];

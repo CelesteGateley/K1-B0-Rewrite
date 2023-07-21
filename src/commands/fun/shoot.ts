@@ -11,7 +11,7 @@ import { randint } from '../../functions';
 
 export const Shoot: Command = {
     name: 'shoot',
-    description: 'Play russian roulette',
+    description: 'Shoot a particular target',
     options: [
         new SlashCommandUserOption().setName('user').setDescription('Who do you want to shoot?'),
     ],

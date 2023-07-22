@@ -22,10 +22,10 @@
     "baseUrl": "./"
   },
   "files": [
-    "src/Bot.ts"
+    "src/main.ts"
   ],
   "include": [
-    "./**/*.ts"
+    "./src/*.ts"
   ],
   "exclude": [
     "node_modules",

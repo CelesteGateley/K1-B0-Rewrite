@@ -12,5 +12,6 @@ logs/
 package-lock.json
 yarn.lock
 .env
+dist/
 
 assets/*.json

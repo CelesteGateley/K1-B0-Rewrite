@@ -1,7 +1,7 @@
 import { Client, CommandInteraction } from 'discord.js';
-import { Command, getAttachment } from '../../command';
+import { getAttachment } from '../../command';
 
-export const Winnable: Command = {
+export default {
     name: 'winnable',
     description: 'It\'s always winnable',
     run: async (client: Client, interaction: CommandInteraction) => {

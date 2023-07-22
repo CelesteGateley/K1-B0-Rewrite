@@ -1,7 +1,6 @@
 import { Client, CommandInteraction } from 'discord.js';
-import { Command } from '../command';
 
-export const Ping: Command = {
+export default {
     name: 'ping',
     description: 'Test the bots interaction',
     run: async (client: Client, interaction: CommandInteraction) => {

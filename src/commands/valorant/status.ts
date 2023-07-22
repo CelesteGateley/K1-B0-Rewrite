@@ -1,8 +1,7 @@
 import { Client, CommandInteraction } from 'discord.js';
-import { Command } from '../../command';
 import { getValorant } from '../../manager/valorant';
 
-export const ValorantApiStatus: Command = {
+export default {
     name: 'valorant-status',
     description: 'Check the status of the valorant client',
     run: async (client: Client, interaction: CommandInteraction) => {

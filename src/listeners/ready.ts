@@ -1,5 +1,5 @@
 import { Client } from 'discord.js';
-import { Commands } from '../command';
+import { getCommands } from '../command';
 import { logger } from '../logger';
 
 export default (client: Client): void => {
@@ -8,7 +8,7 @@ export default (client: Client): void => {
             return;
         }
 
-        await client.application.commands.set(Commands);
+        await client.application.commands.set(await getCommands());
 
         logger.info(`Logged in as ${client.user.username}`);
     });

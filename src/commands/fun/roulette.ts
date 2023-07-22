@@ -1,9 +1,9 @@
 import { Client, CommandInteraction, SlashCommandNumberOption } from 'discord.js';
-import { Command, OptionsContainer } from '../../command';
+import { OptionsContainer } from '../../command';
 import { randint, sleep } from '../../functions';
 
 
-export const Roulette: Command = {
+export default {
     name: 'roulette',
     description: 'Play russian roulette',
     options: [

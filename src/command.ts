@@ -5,13 +5,10 @@ import {
     Channel,
     AttachmentBuilder, User,
 } from 'discord.js';
-import { Ping } from './commands/ping';
-import { Winnable } from './commands/images/winnable';
-import { RulesOfTheInternet } from './commands/fun/roti';
-import { RollDice } from './commands/tabletop/roll';
-import { Roulette } from './commands/fun/roulette';
-import { Shoot } from './commands/fun/shoot';
-import { ValorantApiStatus } from './commands/valorant/status';
+import { resolve } from 'path';
+import { readdir } from 'fs/promises';
+
+const commands: Command[] = [];
 
 export interface Command extends ChatInputApplicationCommandData {
     run: (client: Client, interaction: CommandInteraction) => void;
@@ -64,4 +61,30 @@ export function getAttachment(filename: string): AttachmentBuilder {
     return new AttachmentBuilder(getAssetPath(filename), { name: filename });
 }
 
-export const Commands: Command[] = [Ping, Winnable, RulesOfTheInternet, RollDice, Roulette, Shoot, ValorantApiStatus];
+export async function getCommands(): Promise<Command[]> {
+    if (commands.length === 0) {
+        await (async () => {
+            for await (const f of getFiles(process.cwd() + '/src/commands/')) {
+                if (f.match('[a-zA-Z0-9-]*\\.template\\.ts')) continue;
+                import(f).then(
+                    (module) => {
+                        commands.push(module.default);
+                    },
+                );
+            }
+        })();
+    }
+    return commands;
+}
+
+async function* getFiles(directory: string): AsyncGenerator<string> {
+    const entries = await readdir(directory, { withFileTypes: true });
+    for (const entry of entries) {
+        const res = resolve(directory, entry.name);
+        if (entry.isDirectory()) {
+            yield* getFiles(res);
+        } else {
+            yield res;
+        }
+    }
+}

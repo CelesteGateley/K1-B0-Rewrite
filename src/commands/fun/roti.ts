@@ -1,9 +1,9 @@
 import { Client, CommandInteraction, SlashCommandNumberOption } from 'discord.js';
-import { Command, getAssetPath, OptionsContainer } from '../../command';
+import { getAssetPath, OptionsContainer } from '../../command';
 import * as fs from 'fs';
 import { randint } from '../../functions';
 
-export const RulesOfTheInternet: Command = {
+export default {
     name: 'roti',
     description: 'Prints a random rule of the internet',
     options: [
@@ -22,7 +22,7 @@ function getRules(): string[] {
     return fs.readFileSync(getAssetPath('roti.txt'), 'utf8').split('\n');
 }
 
-function getRule(number: number|null): string {
+function getRule(number: number | null): string {
     const rules = getRules();
     if (number === null) {
         number = randint(0, rules.length);

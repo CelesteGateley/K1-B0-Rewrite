@@ -1,7 +1,7 @@
 import { Client, CommandInteraction, SlashCommandStringOption } from 'discord.js';
-import { Command, OptionsContainer } from '../../command';
+import { OptionsContainer } from '../../command';
 
-export const RollDice: Command = {
+export default {
     name: 'roll',
     description: 'Roll any number of dice',
     options: [
@@ -23,12 +23,17 @@ export const RollDice: Command = {
         for (let x = 0; x < values.length; x++) {
             const parsedVal = Number(values[x]);
             if (isNaN(parsedVal)) {
-                let count: string|number = values[x].split('d')[0];
-                let sides: string|number = values[x].split('d')[1];
+                let count: string | number = values[x].split('d')[0];
+                let sides: string | number = values[x].split('d')[1];
                 let negative: boolean = false;
 
-                if (count === '') { count = '1'; }
-                if (isNaN(Number(count)) || isNaN(Number(sides))) { error = true; break; }
+                if (count === '') {
+                    count = '1';
+                }
+                if (isNaN(Number(count)) || isNaN(Number(sides))) {
+                    error = true;
+                    break;
+                }
 
                 count = parseInt(count);
                 sides = parseInt(sides);
@@ -38,7 +43,9 @@ export const RollDice: Command = {
                     count = Math.abs(count);
                 }
 
-                if (values[x].split('d')[0] === '') { valuesMessage += '1'; }
+                if (values[x].split('d')[0] === '') {
+                    valuesMessage += '1';
+                }
 
                 valuesMessage += values[x].replace('-', '') + ' (';
 
@@ -47,7 +54,9 @@ export const RollDice: Command = {
                     const roll = Math.floor(Math.random() * sides) + 1;
 
                     valuesMessage += roll;
-                    if (counter < count - 1) { valuesMessage += ', '; }
+                    if (counter < count - 1) {
+                        valuesMessage += ', ';
+                    }
 
                     if (negative) {
                         total -= roll;

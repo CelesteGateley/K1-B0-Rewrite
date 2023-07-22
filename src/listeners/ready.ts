@@ -10,6 +10,8 @@ export default (client: Client): void => {
 
         await client.application.commands.set(await getCommands());
 
+        await client.user.setPresence({ activities: [{ name: 'New and Improved! Now with slash commands!' }], status: 'online' });
+
         logger.info(`Logged in as ${client.user.username}`);
     });
 };

@@ -1,4 +1,5 @@
 import winston, { createLogger, transports, format, exceptions } from 'winston';
+import fs from 'fs';
 
 class Logger {
     private winston: winston.Logger;
@@ -6,15 +7,15 @@ class Logger {
     constructor(filename: string = 'default') {
         this.winston = createLogger({
             transports: [
-                new transports.File({
-                    filename: `logs/${filename}.log`,
+                new transports.Stream({
+                    stream: fs.createWriteStream(`logs/${filename}.log`),
                 }),
                 new transports.Console(),
             ],
             exitOnError: false,
             exceptionHandlers: [
-                new transports.File({
-                    filename: 'logs/errors.log',
+                new transports.Stream({
+                    stream: fs.createWriteStream('logs/errors.log'),
                 }),
             ],
             format: format.combine(

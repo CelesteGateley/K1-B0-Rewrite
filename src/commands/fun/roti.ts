@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { randint } from '../../functions';
 
 export default {
-    name: 'roti',
+    name: 'rules-of-the-internet',
     description: 'Prints a random rule of the internet',
     options: [
         new SlashCommandNumberOption().setName('rule').setDescription('A specific rule?'),
@@ -19,7 +19,7 @@ export default {
 };
 
 function getRules(): string[] {
-    return fs.readFileSync(getAssetPath('roti.txt'), 'utf8').split('\n');
+    return fs.readFileSync(getAssetPath('rules-of-the-internet.txt'), 'utf8').split('\n');
 }
 
 function getRule(number: number | null): string {
